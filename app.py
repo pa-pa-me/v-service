@@ -24,7 +24,7 @@ def hello():
 @app.route("/face/average", methods=['POST'])
 def face_average():
     res = 'result.png'
-    facemorpher.averager([], out_filename=res)
+    facemorpher.averager(['./images/me.JPG', './images/you.JPG'], out_filename=res)
 
     return res
 
