@@ -1,10 +1,11 @@
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 from redis import Redis, RedisError
 import os
 import socket
 import facemorpher
 import tempfile
 from common.image_helper import save_base64_image_to_tmp
+from os.path import basename
 
 # Connect to Redis
 redis = Redis(host="redis", db=0, socket_connect_timeout=2, socket_timeout=2)
@@ -35,7 +36,8 @@ def face_average():
 
     facemorpher.averager([temp_me, temp_you], out_filename=temp_file_name)
 
-    return temp_file_name
+
+    return send_from_directory('/tmp', basename(temp_file_name), as_attachment=True)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8880)
