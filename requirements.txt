@@ -2,7 +2,6 @@ Flask
 Redis
 docopt
 scipy
-opencv-python
 matplotlib
 Pillow
 facemorpher
